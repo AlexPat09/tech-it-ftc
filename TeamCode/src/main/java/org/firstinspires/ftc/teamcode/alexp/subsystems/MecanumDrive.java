@@ -11,17 +11,15 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 //import com.qualcomm.hardware.bosch.BHI260IMU;
 import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.util.Range;
 
 public class MecanumDrive {
     private DcMotor frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor;
     private IMU imu;
     private Telemetry telemetry;
-    private double kp;
-    private double error;
-    private double newRotate;
+    private double maxSpeed = 1.0;
 
-    public void init(HardwareMap hwMap, Telemetry telemetry, double kp) {
-        this.kp = kp;
+    public void init(HardwareMap hwMap, Telemetry telemetry) {
         frontLeftMotor = hwMap.get(DcMotor.class, HardwareMapConfig.FRONT_LEFT_DRIVE_ID);
         frontRightMotor = hwMap.get(DcMotor.class, HardwareMapConfig.FRONT_RIGHT_DRIVE_ID);
         backLeftMotor = hwMap.get(DcMotor.class, HardwareMapConfig.BACK_LEFT_DRIVE_ID);
@@ -62,7 +60,6 @@ public class MecanumDrive {
         double frontRightPower = forward - strafe - rotate;
         double backRightPower = forward + strafe - rotate;
 
-        double maxSpeed = 1.0; // Exists for customizability. I'm doubtful regarding the practicality of this.
         double maxPower = 1.0;
 
         maxPower = Math.max(maxPower, Math.abs(frontLeftPower));
@@ -76,7 +73,7 @@ public class MecanumDrive {
         backRightMotor.setPower(maxSpeed * (backRightPower / maxPower));
     }
 
-    public void driveFieldCentric(double forward, double strafe, double rotateX, double rotateY) {
+    public void driveFieldCentric(double forward, double strafe, double rotate) {
         double theta = Math.atan2(forward,strafe);
         double r = Math.hypot(forward,strafe);
 
@@ -84,13 +81,15 @@ public class MecanumDrive {
         double newForward = r * Math.sin(theta);
         double newStrafe = r * Math.cos(theta);
 
-        this.drive(newForward, newStrafe, newRotate);
+        this.drive(newForward, newStrafe, rotate);
     }
-    public void setKp (double kp) {
-        this.kp = kp;
+
+    public double get_max_speed() {
+        return maxSpeed;
     }
-    
-    public double getKp () {return this.kp;}
-    public double getError () {return this.error;}
-    public double getNewRotate () {return this.newRotate;}
+
+    public void set_max_speed(double newSpeed) {
+        newSpeed = Range.clip(newSpeed, -1.0, 1.0);
+        maxSpeed = newSpeed;
+    }
 }
