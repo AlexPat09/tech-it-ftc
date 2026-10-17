@@ -1,11 +1,13 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.alexp;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.alexp.config.IntakeConfig;
+import org.firstinspires.ftc.teamcode.alexp.config.TechItDriveConfig;
 import org.firstinspires.ftc.teamcode.alexp.subsystems.Intake;
+import org.firstinspires.ftc.teamcode.alexp.subsystems.TechItDrive;
 
 @Autonomous(name="BasicAutoEncoderCm", group="Linear Opmode")
 public class ExperimentAuto extends LinearOpMode {
@@ -24,19 +26,20 @@ public class ExperimentAuto extends LinearOpMode {
     public void runOpMode() {
 
         // Initialize hardware
-        leftDrive  = hardwareMap.get(DcMotor.class, "left_drive");
-        rightDrive = hardwareMap.get(DcMotor.class, "right_drive");
+        leftDrive  = hardwareMap.get(DcMotor.class, "bld");
+        rightDrive = hardwareMap.get(DcMotor.class, "brd");
 
-        // Reverse left motor so positive power moves forward
-        leftDrive.setDirection(DcMotor.Direction.REVERSE);
-        rightDrive.setDirection(DcMotor.Direction.FORWARD);
+        leftDrive.setDirection(TechItDriveConfig.BACK_LEFT_DRIVE_DIRECTION);
+        rightDrive.setDirection(TechItDriveConfig.BACK_RIGHT_DRIVE_DIRECTION);
 
-        // Reset encoders to 0 and tell motors to use encoder tracking
-        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftDrive.setZeroPowerBehavior(TechItDriveConfig.MOTOR_ZERO_POWER_BEHAVIOR);
+        rightDrive.setZeroPowerBehavior(TechItDriveConfig.MOTOR_ZERO_POWER_BEHAVIOR);
 
         leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         intake = new Intake();
         intake.init(hardwareMap,telemetry);
@@ -51,7 +54,7 @@ public class ExperimentAuto extends LinearOpMode {
         intake.swallow();
         encoderDrive(0.7, 100.0, 100.0);
         sleep(2000);
-        encoderDrive(0.7, -80.0, -80.0);
+        encoderDrive(0.7, -110.0, -110.0);
         intake.stop();
         telemetry.addData("Path", "Complete");
         telemetry.update();

@@ -22,15 +22,19 @@ public class TechItDrive {
 
     public void init(HardwareMap hwMap, Telemetry telemetry, double maxSpeed) {
         this.maxSpeed = maxSpeed;
+
         //frontLeftMotor = hwMap.get(DcMotor.class, HardwareMapConfig.FRONT_LEFT_DRIVE_ID);
         //frontRightMotor = hwMap.get(DcMotor.class, HardwareMapConfig.FRONT_RIGHT_DRIVE_ID);
         backLeftMotor = hwMap.get(DcMotor.class, HardwareMapConfig.BACK_LEFT_DRIVE_ID);
         backRightMotor = hwMap.get(DcMotor.class, HardwareMapConfig.BACK_RIGHT_DRIVE_ID);
 
+        backRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        backLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
         //frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        backLeftMotor.setDirection(TechItDriveConfig.BACK_LEFT_DRIVE_DIRECTION);
         //frontRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        backRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        backRightMotor.setDirection(TechItDriveConfig.BACK_RIGHT_DRIVE_DIRECTION);
 
         //frontLeftMotor.setZeroPowerBehavior(TechItDriveConfig.MOTOR_ZERO_POWER_BEHAVIOR);
         //frontRightMotor.setZeroPowerBehavior(TechItDriveConfig.MOTOR_ZERO_POWER_BEHAVIOR);

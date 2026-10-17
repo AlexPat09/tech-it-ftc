@@ -1,11 +1,12 @@
 package org.firstinspires.ftc.teamcode.alexp.config;
 
 //import com.acmerobotics.dashboard.config.Config;
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-//@Config
+@Config
 public class TechItDriveConfig {
     public enum ImuType {
         BHI260, BNO055
@@ -15,9 +16,9 @@ public class TechItDriveConfig {
     public final static ImuType ROBOT_IMU_TYPE = ImuType.BNO055;
 
     public final static DcMotorSimple.Direction FRONT_LEFT_DRIVE_DIRECTION = DcMotorSimple.Direction.REVERSE;
-    public final static DcMotorSimple.Direction BACK_LEFT_DRIVE_DIRECTION = DcMotorSimple.Direction.REVERSE;
+    public static DcMotorSimple.Direction BACK_LEFT_DRIVE_DIRECTION = DcMotorSimple.Direction.REVERSE;
     public final static DcMotorSimple.Direction FRONT_RIGHT_DRIVE_DIRECTION = DcMotorSimple.Direction.FORWARD;
-    public final static DcMotorSimple.Direction BACK_RIGHT_DRIVE_DIRECTION = DcMotorSimple.Direction.FORWARD;
+    public static DcMotorSimple.Direction BACK_RIGHT_DRIVE_DIRECTION = DcMotorSimple.Direction.FORWARD;
 
     public final static DcMotor.ZeroPowerBehavior MOTOR_ZERO_POWER_BEHAVIOR = DcMotor.ZeroPowerBehavior.BRAKE;
 
