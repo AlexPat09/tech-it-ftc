@@ -22,13 +22,21 @@ public class Intake {
     }
 
     public void swallow() {
-        intakeMotor.setPower(IntakeConfig.INTAKE_SPEED);
-        intakeState = IntakeState.COLLECTING;
+        if (intakeState == IntakeState.COLLECTING) {
+            stop();
+        } else {
+            intakeMotor.setPower(IntakeConfig.INTAKE_SPEED);
+            intakeState = IntakeState.COLLECTING;
+        }
     }
 
     public void spit() {
-        intakeMotor.setPower(-IntakeConfig.INTAKE_SPEED);
-        intakeState = IntakeState.DROPPING;
+        if (intakeState == IntakeState.DROPPING) {
+            stop();
+        } else {
+            intakeMotor.setPower(-IntakeConfig.INTAKE_SPEED);
+            intakeState = IntakeState.DROPPING;
+        }
     }
 
     public void stop() {

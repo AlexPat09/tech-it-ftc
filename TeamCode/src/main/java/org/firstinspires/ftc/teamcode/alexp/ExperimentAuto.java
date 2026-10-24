@@ -52,9 +52,9 @@ public class ExperimentAuto extends LinearOpMode {
 
         encoderDrive(0.1, -10.0, -10.0);
         intake.swallow();
-        encoderDrive(0.7, 100.0, 100.0);
-        sleep(2000);
-        encoderDrive(0.7, -110.0, -110.0);
+        encoderDrive(0.6, 100.0, 100.0);
+        sleep(1500);
+        encoderDrive(0.6, -110.0, -110.0);
         intake.stop();
         telemetry.addData("Path", "Complete");
         telemetry.update();
