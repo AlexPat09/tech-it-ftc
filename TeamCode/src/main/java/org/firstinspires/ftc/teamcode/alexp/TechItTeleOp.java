@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.alexp;
 
-import com.acmerobotics.dashboard.config.Config;
+//import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.alexp.config.HardwareMapConfig;
 import org.firstinspires.ftc.teamcode.alexp.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.alexp.subsystems.TechItDrive;
 
-@Config
+//@Config
 @TeleOp(name = "FIRST TECH IT TEST", group = "TECH IT")
 public class TechItTeleOp extends OpMode {
     private TechItDrive drive;

@@ -14,4 +14,5 @@ public class HardwareMapConfig {
 
     public final static String IMU_ID = "imu";
     public final static String INTAKE_MOTOR_ID = "intm";
+    public final static String OUTTAKE_MOTOR_ID = "outm";
 }

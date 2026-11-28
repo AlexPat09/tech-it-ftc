@@ -1,11 +1,11 @@
 package org.firstinspires.ftc.teamcode.alexp.config;
 
-import com.acmerobotics.dashboard.config.Config;
+//import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@Config
+//@Config
 public class MecanumDriveConfig {
 
     // Non-Tunable constants
